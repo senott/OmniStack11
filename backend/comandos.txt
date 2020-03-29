@@ -1,0 +1,21 @@
+GET =>
+curl http://localhost:3333/ongs
+curl http://localhost:3333/incidents
+curl http://localhost:3333/incidents?page=3
+
+curl -H "Authorization: 64b1fff8" http://localhost:3333/incidents
+curl -H "Authorization: 19e2e96a" http://localhost:3333/incidents
+
+POST =>
+ONG:
+curl -d '{"name": "APAD", "email": "contato@apad.org.br", "whatsapp": "470000000000", "city": "Rio do Sul", "uf": "SC"}' -H "Content-Type: application/json" -X POST http://localhost:3333/ongs
+
+INCIDENT:
+curl -d '{"title": "Caso 1", "description": "Detalhes do caso.", "value": "140"}' -H "Content-Type: application/json" -H "Authorization: 64b1fff8" -X POST http://localhost:3333/incidents
+curl -d '{"title": "Caso 2", "description": "Detalhes do caso.", "value": "150"}' -H "Content-Type: application/json" -H "Authorization: 19e2e96a" -X POST http://localhost:3333/incidents
+
+DELETE:
+curl -H "Authorization: 64b1fff8" -X DELETE http://localhost:3333/incidents/1
+
+LOGIN:
+curl -d '{"id": "19e2e96a"}' -H "Content-Type: application/json" -X POST http://localhost:3333/sessions
